@@ -1,0 +1,130 @@
+const Appointments = require("../models/Appointments");
+const Patients = require("../models/Patients");
+
+module.exports = {
+  // GET ".../pacientes"
+  async index(req, res) {
+    const patients = await Patients.findAll();
+    return res.json(patients);
+  },
+
+  // GET ".../pesquisar-paciente"
+  async show(req, res) {
+    const { name } = await req.query;
+
+    try {
+      const patient = await Patients.findAll({
+        where: {
+          name: name,
+        },
+      });
+      if (patient === null || undefined) {
+        return res
+          .status(404)
+          .json({ error: "Paciente não encontrado no banco de dados" });
+      }
+      return res.json(patient);
+    } catch (error) {
+      res.send(`Não foi possivel encontrar o paciente \n${error}`);
+    }
+  },
+
+  // GET ".../pacientes/id/agendamentos"
+  async showAppointments(req, res) {
+    const { id } = await req.params;
+    let patient = await Patients.findByPk(id);
+
+    if (!patient) {
+      return res.status(400).json({ error: "Paciente não encontrado" });
+    }
+
+    try {
+      patient = await Patients.findByPk(id, {
+        include: Appointments,
+      });
+      return res.json(patient);
+    } catch (error) {
+      res.send(`Algo deu errado na busca: \n${error}`);
+    }
+  },
+
+  // POST ".../pacientes"
+  async store(req, res) {
+    const { name, bornDate, gender, cpf, address, phone, email } = req.body;
+
+    // validando campos obrigatórios
+    if (!name || !bornDate || !gender || !cpf || !address) {
+      return res
+        .status(400)
+        .json({ error: "Todos os campos obrigatórios devem ser preenchidos." });
+    }
+
+    try {
+      const patients = await Patients.create({
+        name: name.toUpperCase(),
+        bornDate,
+        gender,
+        cpf,
+        address,
+        phone,
+        email,
+      });
+      console.log(patients);
+      return res.json(patients);
+    } catch (error) {
+      return res.send(
+        `Não foi possivel criar o cadastro do paciente\n ${error}`
+      );
+    }
+  },
+
+  // PUT ".../pacientes/:id"
+  async put(req, res) {
+    const { name, bornDate, gender, cpf, address, phone, email } = req.body;
+
+    const patient = await Patients.findByPk(req.params.id);
+
+    if (patient === null) {
+      return res.status(404).error("Paciente não consta no banco de dados");
+    }
+
+    if (!name || !bornDate || !gender || !address || !phone || !email) {
+      return res
+        .status(400)
+        .json({ error: "Todos os campos obrigatórios devem ser preenchidos." });
+    }
+
+    try {
+      await Patients.update(
+        { name, bornDate, gender, cpf, address, phone, email },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+
+      return res.send("Cadastro do paciente atualizado com sucesso!");
+    } catch (error) {
+      return res.send(`Algo deu errodo:\n ${error}`);
+    }
+  },
+
+  // DELETE ".../pacientes/id"
+  async delete(req, res) {
+    const patient = await Patients.findByPk(req.params.id);
+
+    if (patient === null) {
+      return res
+        .status(404)
+        .json({ error: "Paciente não consta no banco de dados" });
+    }
+
+    await Patients.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.send("Cadastro do Paciente foi excluido com sucesso!");
+  },
+};
