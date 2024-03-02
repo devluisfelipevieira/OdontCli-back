@@ -29,6 +29,22 @@ module.exports = {
     }
   },
 
+  //GET ".../pacientes/id"
+  async showForId(req, res) {
+    const { id } = req.params;
+    try {
+      const patient = await Patients.findByPk(id);
+      if (patient === null || undefined) {
+        return res
+          .status(404)
+          .json({ error: "Paciente não encontrado no banco de dados" });
+      }
+      return res.json(patient);
+    } catch (error) {
+      res.send(`Não foi possivel encontrar o paciente \n${error}`);
+    }
+  },
+
   // GET ".../pacientes/id/agendamentos"
   async showAppointments(req, res) {
     const { id } = await req.params;
@@ -96,7 +112,15 @@ module.exports = {
 
     try {
       await Patients.update(
-        { name, bornDate, gender, cpf, address, phone, email },
+        {
+          name: name.toUpperCase(),
+          bornDate,
+          gender,
+          cpf,
+          address,
+          phone,
+          email,
+        },
         {
           where: {
             id: req.params.id,

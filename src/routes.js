@@ -9,6 +9,7 @@ const routes = express.Router();
 //rotas para pacientes
 routes.get("/odontcli/pacientes", PatientController.index); //lista todos os pacientes
 routes.get("/odontcli/pesquisar-paciente", PatientController.show); //paciente específico
+routes.get("/odontcli/pacientes/:id", PatientController.showForId); //paciente específico por ID
 routes.post("/odontcli/pacientes", PatientController.store); //cria cadastro de paciente novo
 routes.put("/odontcli/pacientes/:id", PatientController.put); //atualiza profissional
 routes.delete("/odontcli/pacientes/:id", PatientController.delete); //apaga cadastro do paciente

@@ -2,7 +2,7 @@ const Appointments = require("../models/Appointments");
 const Patients = require("../models/Patients");
 const Professionals = require("../models/Professionals");
 const Procedures = require("../models/Procedures");
-const { Op, where } = require("sequelize");
+const { Op, where, TIME } = require("sequelize");
 
 module.exports = {
   // GET ".../agendamentos"
@@ -39,7 +39,7 @@ module.exports = {
 
   // POST ".../agendamentos"
   async store(req, res) {
-    const { patientId, professionalId, procedureId, dateHour } = req.body;
+    const { patientId, professionalId, procedureId, dateHour } = await req.body;
 
     if (!patientId || !professionalId || !procedureId || !dateHour) {
       return res.status(400).json({
