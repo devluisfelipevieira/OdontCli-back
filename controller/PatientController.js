@@ -8,14 +8,54 @@ module.exports = {
     return res.json(patients);
   },
 
-  // GET ".../pesquisar-paciente"
-  async show(req, res) {
+  // GET ".../pacientes-por-nome"
+  async showForName(req, res) {
     const { name } = await req.query;
 
     try {
       const patient = await Patients.findAll({
         where: {
           name: name,
+        },
+      });
+      if (patient === null || undefined) {
+        return res
+          .status(404)
+          .json({ error: "Paciente não encontrado no banco de dados" });
+      }
+      return res.json(patient);
+    } catch (error) {
+      res.send(`Não foi possivel encontrar o paciente \n${error}`);
+    }
+  },
+  // GET ".../pacientes-por-data"
+  async showForBornDate(req, res) {
+    const { bornDate } = await req.query;
+
+    try {
+      const patient = await Patients.findAll({
+        where: {
+          bornDate: bornDate,
+        },
+      });
+      if (patient === null || undefined) {
+        return res
+          .status(404)
+          .json({ error: "Paciente não encontrado no banco de dados" });
+      }
+      return res.json(patient);
+    } catch (error) {
+      res.send(`Não foi possivel encontrar o paciente \n${error}`);
+    }
+  },
+  // GET ".../pacientes-por-cpf"
+  async showForCpf(req, res) {
+    const { cpf } = await req.query;
+
+    try {
+      const patient = await Patients.findAll({
+        where: {
+          cpf: cpf,
         },
       });
       if (patient === null || undefined) {
