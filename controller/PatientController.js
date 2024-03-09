@@ -74,7 +74,7 @@ module.exports = {
     const { id } = req.params;
     try {
       const patient = await Patients.findByPk(id);
-      if (patient === null || undefined) {
+      if (patient === null || undefined || NaN) {
         return res
           .status(404)
           .json({ error: "Paciente não encontrado no banco de dados" });
@@ -140,7 +140,7 @@ module.exports = {
 
     const patient = await Patients.findByPk(req.params.id);
 
-    if (patient === null) {
+    if (patient === null || undefined) {
       return res.status(404).error("Paciente não consta no banco de dados");
     }
 
