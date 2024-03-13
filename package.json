@@ -1,7 +1,7 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "",
+  "description": "O back-end do projeto é todo feito em JS, e os frameworks usado são:\r Sequelize -> O objetivo dele no código é fazer a ligação com o banco de dados(PostegreSQL);\r Node(Express) -> framework base para o back-end em JS que tem entre suas utilidades fazer o gerenciamento de rotas e criar middlewares;",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server"

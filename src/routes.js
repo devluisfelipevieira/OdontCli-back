@@ -7,7 +7,7 @@ const PaymentController = require("../controller/PaymentController");
 const routes = express.Router();
 
 //rotas para pacientes
-routes.get("/odontcli/pacientes", PatientController.index); //lista todos os pacientes
+routes.get("/odontcli/pacientes", PatientController.index); //lista todos os pacientes ||
 routes.get("/odontcli/pacientes-por-nome", PatientController.showForName); //paciente específico pelo nome
 routes.get("/odontcli/pacientes-por-cpf", PatientController.showForCpf); //paciente específico pelo nome
 routes.get("/odontcli/pacientes/:id", PatientController.showForId); //paciente específico por ID
