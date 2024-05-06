@@ -1,7 +1,7 @@
-const Appointments = require("../models/Appointments");
-const Patients = require("../models/Patients");
-const Professionals = require("../models/Professionals");
-const Procedures = require("../models/Procedures");
+const Appointments = require("../../models/Appointments");
+const Patients = require("../../models/Patients");
+const Professionals = require("../../models/Professionals");
+const Procedures = require("../../models/Procedures");
 const { Op } = require("sequelize");
 
 module.exports = {

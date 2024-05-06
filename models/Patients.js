@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/sequelize");
+const sequelize = require("../seeders/index");
 
 const Patients = sequelize.define("patients", {
   name: DataTypes.STRING,

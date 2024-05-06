@@ -1,5 +1,5 @@
-const Payment = require("../models/Payment");
-const Appointments = require("../models/Appointments");
+const Payment = require("../../models/Payment");
+const Appointments = require("../../models/Appointments");
 
 module.exports = {
   // GET "...agendamentos/appointmentId/pagamento/:id"

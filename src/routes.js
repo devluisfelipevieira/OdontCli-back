@@ -1,9 +1,9 @@
 const express = require("express");
-const PatientController = require("../controller/PatientController");
-const ProfessionalController = require("../controller/ProfessionalController");
-const ProceduresController = require("../controller/ProceduresController");
-const AppointmentController = require("../controller/AppointmentController");
-const PaymentController = require("../controller/PaymentController");
+const PatientController = require("./controller/PatientController");
+const ProfessionalController = require("./controller/ProfessionalController");
+const ProceduresController = require("./controller/ProceduresController");
+const AppointmentController = require("./controller/AppointmentController");
+const PaymentController = require("./controller/PaymentController");
 const routes = express.Router();
 
 //rotas para pacientes

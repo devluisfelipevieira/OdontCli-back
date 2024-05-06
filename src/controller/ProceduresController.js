@@ -1,4 +1,4 @@
-const Procedures = require("../models/Procedures");
+const Procedures = require("../../models/Procedures");
 
 module.exports = {
   // GET ".../procedimentos"

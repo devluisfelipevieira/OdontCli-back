@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/sequelize");
+const sequelize = require("../seeders/index");
 
 const Payment = sequelize.define("payment", {
   appointmentId: DataTypes.INTEGER,

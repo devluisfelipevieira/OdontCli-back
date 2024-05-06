@@ -1,10 +1,11 @@
 module.exports = {
   dialect: "postgres",
   host: "localhost",
-  username: "postgres",
-  password: "40028922",
+  port: "5432",
   database: "odontcli",
+  username: "postgres",
+  password: "senha",
   define: {
-    timestamps: true,
+    timestamp: true,
   },
 };

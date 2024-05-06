@@ -1,8 +1,8 @@
-const Patients = require("../models/Patients");
-const Professionals = require("../models/Professionals");
-const Procedures = require("../models/Procedures");
-const Appointments = require("../models/Appointments");
-const Payment = require("../models/Payment");
+const Patients = require("../../models/Patients");
+const Professionals = require("../../models/Professionals");
+const Procedures = require("../../models/Procedures");
+const Appointments = require("../../models/Appointments");
+const Payment = require("../../models/Payment");
 
 Patients.hasMany(Appointments, { onDelete: "CASCADE", onUpdate: "CASCADE" });
 

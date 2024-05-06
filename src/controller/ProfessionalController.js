@@ -1,5 +1,5 @@
-const Appointments = require("../models/Appointments");
-const Professionals = require("../models/Professionals");
+const Appointments = require("../../models/Appointments");
+const Professionals = require("../../models/Professionals");
 
 module.exports = {
   // GET ".../profissionais"

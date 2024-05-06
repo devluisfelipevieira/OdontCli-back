@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/sequelize");
+const sequelize = require("../seeders/index");
 // Sincroniza os modelos com o banco de dados
 sequelize.sync();
 
