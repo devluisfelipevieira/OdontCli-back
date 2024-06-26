@@ -144,7 +144,7 @@ module.exports = {
       return res.status(404).error("Paciente não consta no banco de dados");
     }
 
-    if (!name || !bornDate || !gender || !city || !phone || !email) {
+    if (!name || !bornDate || !gender || !city || !cpf) {
       return res
         .status(400)
         .json({ error: "Todos os campos obrigatórios devem ser preenchidos." });
